@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Shop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            padding: 20px 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            font-size: 2.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .nav-bar {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            padding: 15px 0;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .search-bar {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .container {
+            display: flex;
+            padding: 40px;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            color: #666;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255,255,255,0.3),
+                transparent
+            );
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+        }
+
+        .product-card:hover .product-image::before {
+            left: 100%;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .product-price {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .product-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9em;
+            color: #999;
+            margin-bottom: 15px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-like {
+            background: #f0f0f0;
+            color: #667eea;
+        }
+
+        .btn-like:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .btn-cart {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-cart:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        .product-detail {
+            width: 400px;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .detail-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .detail-content {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .detail-specs {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .spec-value {
+            color: #667eea;
+        }
+
+        .divider {
+            width: 2px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            margin: 0 10px;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .product-detail {
+                width: 100%;
+                position: relative;
+                top: 0;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-bar {
+                flex-wrap: wrap;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="title">Tindahan ni Sir Jeff</h1>
+        <div class="nav-bar">
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products...">
+            </div>
+            <button class="nav-btn">Add-to-cart and Orders</button>
+            <button class="nav-btn">Account</button>
+            <button class="nav-btn">Menu</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    Product Image
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Dildough</div>
+                    <div class="product-stats">
+                        <span class="stat-item">⭐ 4.8</span>
+                        <span class="stat-item">👍 234</span>
+                        <span class="stat-item">🔥 156 sold</span>
+                    </div>
+                    <div class="product-actions">
+                        <div class="product-price">$129.99</div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-like">❤ Like</button>
+                        <button class="btn btn-cart">🛒 Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    Product Image
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Dildough Pro</div>
+                    <div class="product-stats">
+                        <span class="stat-item">⭐ 4.9</span>
+                        <span class="stat-item">👍 567</span>
+                        <span class="stat-item">🔥 389 sold</span>
+                    </div>
+                    <div class="product-actions">
+                        <div class="product-price">$299.99</div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-like">❤ Like</button>
+                        <button class="btn btn-cart">🛒 Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    Product Image
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Portable Dildough</div>
+                    <div class="product-stats">
+                        <span class="stat-item">⭐ 4.7</span>
+                        <span class="stat-item">👍 189</span>
+                        <span class="stat-item">🔥 243 sold</span>
+                    </div>
+                    <div class="product-actions">
+                        <div class="product-price">$79.99</div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-like">❤ Like</button>
+                        <button class="btn btn-cart">🛒 Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    Product Image
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Mechanical Dildough</div>
+                    <div class="product-stats">
+                        <span class="stat-item">⭐ 4.9</span>
+                        <span class="stat-item">👍 423</span>
+                        <span class="stat-item">🔥 512 sold</span>
+                    </div>
+                    <div class="product-actions">
+                        <div class="product-price">$149.99</div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-like">❤ Like</button>
+                        <button class="btn btn-cart">🛒 Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="product-detail">
+            <h2 class="detail-title">Product Details</h2>
+            <div class="detail-content">
+                Hover over any product to see it come to life! Each item features smooth animations and modern design elements.
+            </div>
+            <div class="detail-specs">
+                <div class="spec-item">
+                    <span class="spec-label">Size</span>
+                    <span class="spec-value">Various</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Color</span>
+                    <span class="spec-value">Multiple Options</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Origin</span>
+                    <span class="spec-value">International</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Shipping</span>
+                    <span class="spec-value">Free Delivery</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
