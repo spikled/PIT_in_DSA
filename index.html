@@ -15,12 +15,401 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            transition: background 0.5s ease;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        body.ocean-theme {
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+        }
+
+        body.sunset-theme {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+        }
+
+        body.forest-theme {
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        }
+
+        body.dark-mode .header {
+            background: #1f1f1f;
+            color: #fff;
+        }
+
+        body.dark-mode .title {
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body.dark-mode .product-card {
+            background: #2a2a2a;
+            color: #fff;
+        }
+
+        body.dark-mode .product-name {
+            color: #fff;
+        }
+
+        body.dark-mode .product-detail {
+            background: #2a2a2a;
+            color: #fff;
+        }
+
+        body.dark-mode .detail-title {
+            color: #fff;
+        }
+
+        body.dark-mode .detail-content {
+            color: #ccc;
+        }
+
+        body.dark-mode .spec-label {
+            color: #ccc;
+        }
+
+        body.dark-mode .divider {
+            background: linear-gradient(180deg, #00d2ff 0%, #3a7bd5 100%);
+        }
+
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .login-overlay.hidden {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .login-modal {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 400px;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .login-title {
+            font-size: 2em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9em;
+        }
+
+        .form-input {
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .login-button {
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        .main-content {
+            display: none;
+        }
+
+        .main-content.visible {
+            display: block;
+        }
+
+        .user-info {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+            border-radius: 20px;
+            color: #667eea;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .account-dropdown {
+            position: absolute;
+            top: 60px;
+            right: 100px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 25px;
+            min-width: 300px;
+            z-index: 100;
+            display: none;
+            animation: dropDown 0.3s ease;
+        }
+
+        .account-dropdown.show {
+            display: block;
+        }
+
+        @keyframes dropDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-header {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .account-info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .info-value {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .logout-btn:hover {
+            background: #ff3838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
+        }
+
+        .menu-dropdown {
+            position: absolute;
+            top: 60px;
+            right: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 25px;
+            min-width: 350px;
+            z-index: 100;
+            display: none;
+            animation: dropDown 0.3s ease;
+        }
+
+        .menu-dropdown.show {
+            display: block;
+        }
+
+        body.dark-mode .menu-dropdown,
+        body.dark-mode .account-dropdown {
+            background: #2a2a2a;
+        }
+
+        body.dark-mode .dropdown-header {
+            color: #fff;
+            border-bottom-color: #444;
+        }
+
+        body.dark-mode .theme-option {
+            background: #1f1f1f;
+            color: #fff;
+        }
+
+        body.dark-mode .theme-option:hover {
+            background: #333;
+        }
+
+        body.dark-mode .theme-option.active {
+            background: #667eea;
+        }
+
+        .settings-section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1em;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .theme-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .theme-option {
+            padding: 12px 16px;
+            border-radius: 10px;
+            background: #f5f5f5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 600;
+            border: 2px solid transparent;
+        }
+
+        .theme-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .theme-option.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .theme-option.default {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .theme-option.dark {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+        }
+
+        .theme-option.ocean {
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            color: white;
+        }
+
+        .theme-option.sunset {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+        }
+
+        .theme-option.forest {
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+            color: white;
+        }
+
+        .reset-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ffa502;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .reset-btn:hover {
+            background: #ff8800;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 165, 2, 0.3);
         }
 
         .header {
             background: white;
             padding: 20px 40px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
         }
 
         .title {
@@ -52,6 +441,10 @@
             border-radius: 25px;
             font-size: 1em;
             transition: all 0.3s ease;
+        }
+
+        .search-bar input::placeholder {
+            color: #999;
         }
 
         .search-bar input:focus {
@@ -102,6 +495,23 @@
             cursor: pointer;
         }
 
+        .product-card.hidden {
+            display: none;
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+            font-size: 1.2em;
+            display: none;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
         .product-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0,0,0,0.2);
@@ -118,6 +528,14 @@
             color: #666;
             position: relative;
             overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .product-image::before {
@@ -300,33 +718,99 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1 class="title">Akong tindahan kay dili mn imo</h1>
+    <!-- Login Overlay -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-modal">
+            <h2 class="login-title">Welcome to Shopyflix</h2>
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="username">Username</label>
+                    <input type="text" id="username" class="form-input" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+                </div>
+                <button type="submit" class="login-button">Enter Shop</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <div class="header">
+        <h1 class="title">ShopHub</h1>
         <div class="nav-bar">
             <div class="search-bar">
-                <input type="text" placeholder="Search">
+                <input type="text" id="searchInput" placeholder="Search for products...">
             </div>
             <button class="nav-btn">Add-to-cart and Orders</button>
-            <button class="nav-btn">Account</button>
-            <button class="nav-btn">Menu</button>
+            <button class="nav-btn" id="accountBtn">Account</button>
+            <button class="nav-btn" id="menuBtn">Menu</button>
+        </div>
+
+        <!-- Account Dropdown -->
+        <div class="account-dropdown" id="accountDropdown">
+            <div class="dropdown-header">Account Information</div>
+            <div class="account-info-item">
+                <span class="info-label">Username:</span>
+                <span class="info-value" id="displayUsername"></span>
+            </div>
+            <div class="account-info-item">
+                <span class="info-label">Email:</span>
+                <span class="info-value" id="displayEmail"></span>
+            </div>
+            <button class="logout-btn" id="logoutBtn">Logout</button>
+        </div>
+
+        <!-- Menu Dropdown -->
+        <div class="menu-dropdown" id="menuDropdown">
+            <div class="dropdown-header">Settings</div>
+            
+            <div class="settings-section">
+                <div class="section-title">Theme</div>
+                <div class="theme-grid">
+                    <div class="theme-option default active" data-theme="default">
+                        Default
+                    </div>
+                    <div class="theme-option dark" data-theme="dark">
+                        Dark Mode
+                    </div>
+                    <div class="theme-option ocean" data-theme="ocean">
+                        Ocean
+                    </div>
+                    <div class="theme-option sunset" data-theme="sunset">
+                        Sunset
+                    </div>
+                    <div class="theme-option forest" data-theme="forest">
+                        Forest
+                    </div>
+                </div>
+            </div>
+
+            <button class="reset-btn" id="resetBtn">Reset to Default</button>
         </div>
     </div>
 
     <div class="container">
         <div class="products-grid">
-            <div class="product-card">
-                <div class="product-image">
-                    Product Image
+            <div class="no-results" id="noResults">
+                🔍 No products found. Try a different search term!
+            </div>
+
+            <div class="product-card" data-name="Premium Wireless Headphones">
+                <div class="product-image" data-product="1">
+                    <img src="" alt="Premium Wireless Headphones">
                 </div>
                 <div class="product-info">
-                    <div class="product-name">Beer</div>
+                    <div class="product-name">Premium Wireless Headphones</div>
                     <div class="product-stats">
                         <span class="stat-item">⭐ 4.8</span>
                         <span class="stat-item">👍 234</span>
                         <span class="stat-item">🔥 156 sold</span>
-                        <div class="product-price">₱50</div>
                     </div>
                     <div class="product-actions">
+                        <div class="product-price">₱129.99</div>
                     </div>
                     <div class="action-buttons">
                         <button class="btn btn-like">❤ Like</button>
@@ -335,19 +819,19 @@
                 </div>
             </div>
 
-            <div class="product-card">
-                <div class="product-image">
-                    Product Image
+            <div class="product-card" data-name="Smart Watch Pro">
+                <div class="product-image" data-product="2">
+                    <img src="" alt="Smart Watch Pro">
                 </div>
                 <div class="product-info">
-                    <div class="product-name">Beer Pro</div>
+                    <div class="product-name">Smart Watch Pro</div>
                     <div class="product-stats">
                         <span class="stat-item">⭐ 4.9</span>
                         <span class="stat-item">👍 567</span>
                         <span class="stat-item">🔥 389 sold</span>
                     </div>
                     <div class="product-actions">
-                        <div class="product-price">₱100</div>
+                        <div class="product-price">₱299.99</div>
                     </div>
                     <div class="action-buttons">
                         <button class="btn btn-like">❤ Like</button>
@@ -356,19 +840,19 @@
                 </div>
             </div>
 
-            <div class="product-card">
-                <div class="product-image">
-                    Product Image
+            <div class="product-card" data-name="Portable Speaker">
+                <div class="product-image" data-product="3">
+                    <img src="" alt="Portable Speaker">
                 </div>
                 <div class="product-info">
-                    <div class="product-name">Portable Beer</div>
+                    <div class="product-name">Portable Speaker</div>
                     <div class="product-stats">
                         <span class="stat-item">⭐ 4.7</span>
                         <span class="stat-item">👍 189</span>
                         <span class="stat-item">🔥 243 sold</span>
                     </div>
                     <div class="product-actions">
-                        <div class="product-price">₱75</div>
+                        <div class="product-price">₱79.99</div>
                     </div>
                     <div class="action-buttons">
                         <button class="btn btn-like">❤ Like</button>
@@ -377,19 +861,19 @@
                 </div>
             </div>
 
-            <div class="product-card">
-                <div class="product-image">
-                    Product Image
+            <div class="product-card" data-name="Mechanical Keyboard">
+                <div class="product-image" data-product="4">
+                    <img src="" alt="Mechanical Keyboard">
                 </div>
                 <div class="product-info">
-                    <div class="product-name">Mechanical Beer</div>
+                    <div class="product-name">Mechanical Keyboard</div>
                     <div class="product-stats">
                         <span class="stat-item">⭐ 4.9</span>
                         <span class="stat-item">👍 423</span>
                         <span class="stat-item">🔥 512 sold</span>
                     </div>
                     <div class="product-actions">
-                        <div class="product-price">₱120</div>
+                        <div class="product-price">₱149.99</div>
                     </div>
                     <div class="action-buttons">
                         <button class="btn btn-like">❤ Like</button>
@@ -404,7 +888,7 @@
         <div class="product-detail">
             <h2 class="detail-title">Product Details</h2>
             <div class="detail-content">
-                Search for a high-quality products with 69 star michelin rated.
+                Hover over any product to see it come to life! Each item features smooth animations and modern design elements.
             </div>
             <div class="detail-specs">
                 <div class="spec-item">
@@ -426,5 +910,151 @@
             </div>
         </div>
     </div>
+    </div>
+
+    <script>
+        let userData = {
+            username: '',
+            email: ''
+        };
+
+        let currentTheme = 'default';
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('shopTheme');
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            userData.username = document.getElementById('username').value;
+            userData.email = document.getElementById('email').value;
+            
+            document.getElementById('loginOverlay').classList.add('hidden');
+            
+            document.getElementById('mainContent').classList.add('visible');
+            
+            updateAccountButton();
+        });
+
+        function updateAccountButton() {
+            const accountBtn = document.getElementById('accountBtn');
+            accountBtn.innerHTML = `Account <span class="user-info">${userData.username}</span>`;
+            
+            document.getElementById('displayUsername').textContent = userData.username;
+            document.getElementById('displayEmail').textContent = userData.email;
+        }
+
+        document.getElementById('accountBtn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            const dropdown = document.getElementById('accountDropdown');
+            dropdown.classList.toggle('show');
+        });
+
+        document.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('accountDropdown');
+            const accountBtn = document.getElementById('accountBtn');
+            const menuDropdown = document.getElementById('menuDropdown');
+            const menuBtn = document.getElementById('menuBtn');
+            
+            if (!dropdown.contains(e.target) && e.target !== accountBtn) {
+                dropdown.classList.remove('show');
+            }
+            
+            if (!menuDropdown.contains(e.target) && e.target !== menuBtn) {
+                menuDropdown.classList.remove('show');
+            }
+        });
+
+        document.getElementById('menuBtn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            const menuDropdown = document.getElementById('menuDropdown');
+            menuDropdown.classList.toggle('show');
+            document.getElementById('accountDropdown').classList.remove('show');
+        });
+
+        function applyTheme(theme) {
+            document.body.classList.remove('dark-mode', 'ocean-theme', 'sunset-theme', 'forest-theme');
+            
+            if (theme === 'dark') {
+                document.body.classList.add('dark-mode');
+            } else if (theme === 'ocean') {
+                document.body.classList.add('ocean-theme');
+            } else if (theme === 'sunset') {
+                document.body.classList.add('sunset-theme');
+            } else if (theme === 'forest') {
+                document.body.classList.add('forest-theme');
+            }
+            
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.classList.remove('active');
+                if (option.getAttribute('data-theme') === theme) {
+                    option.classList.add('active');
+                }
+            });
+            
+            currentTheme = theme;
+            localStorage.setItem('shopTheme', theme);
+        }
+
+        document.querySelectorAll('.theme-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const theme = this.getAttribute('data-theme');
+                applyTheme(theme);
+            });
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            applyTheme('default');
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            userData.username = '';
+            userData.email = '';
+            
+            document.getElementById('accountBtn').innerHTML = 'Account';
+            
+            document.getElementById('accountDropdown').classList.remove('show');
+            
+            document.getElementById('mainContent').classList.remove('visible');
+            
+            document.getElementById('loginOverlay').classList.remove('hidden');
+            
+            document.getElementById('searchInput').value = '';
+            productCards.forEach(card => card.classList.remove('hidden'));
+            noResults.classList.remove('show');
+            
+            document.getElementById('loginForm').reset();
+        });
+
+        const searchInput = document.getElementById('searchInput');
+        const productCards = document.querySelectorAll('.product-card');
+        const noResults = document.getElementById('noResults');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            productCards.forEach(card => {
+                const productName = card.getAttribute('data-name').toLowerCase();
+                
+                if (productName.includes(searchTerm)) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            if (visibleCount === 0 && searchTerm !== '') {
+                noResults.classList.add('show');
+            } else {
+                noResults.classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>
