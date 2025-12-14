@@ -75,6 +75,7 @@
             background: linear-gradient(180deg, #00d2ff 0%, #3a7bd5 100%);
         }
 
+        /* --- Login Styles --- */
         .login-overlay {
             position: fixed;
             top: 0;
@@ -94,12 +95,8 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .login-modal {
@@ -113,14 +110,8 @@
         }
 
         @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .login-title {
@@ -183,10 +174,7 @@
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
         }
 
-        .login-button:active {
-            transform: translateY(0);
-        }
-
+        /* --- Main Layout --- */
         .main-content {
             display: none;
         }
@@ -205,33 +193,44 @@
             margin-left: 10px;
         }
 
-        .account-dropdown {
+        /* --- Dropdowns (Account, Menu, Cart) --- */
+        .account-dropdown, .menu-dropdown, .cart-dropdown {
             position: absolute;
-            top: 60px;
-            right: 100px;
+            top: 70px;
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             padding: 25px;
-            min-width: 300px;
             z-index: 100;
             display: none;
             animation: dropDown 0.3s ease;
         }
 
-        .account-dropdown.show {
+        .account-dropdown { right: 100px; min-width: 300px; }
+        .menu-dropdown { right: 40px; min-width: 350px; }
+        
+        /* Cart Dropdown Styles */
+        .cart-dropdown {
+            right: 250px;
+            width: 450px; /* Made slightly wider for delivery view */
+            max-height: 80vh; /* Allow it to be taller */
+            overflow-y: auto;
+        }
+
+        .account-dropdown.show, .menu-dropdown.show, .cart-dropdown.show {
             display: block;
         }
 
+        body.dark-mode .account-dropdown, 
+        body.dark-mode .menu-dropdown,
+        body.dark-mode .cart-dropdown {
+            background: #2a2a2a;
+            color: #fff;
+        }
+
         @keyframes dropDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .dropdown-header {
@@ -243,6 +242,187 @@
             border-bottom: 2px solid #f0f0f0;
         }
 
+        body.dark-mode .dropdown-header {
+            color: #fff;
+            border-bottom-color: #444;
+        }
+
+        /* --- Cart Specific Styles --- */
+        .cart-items-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        body.dark-mode .cart-item {
+            border-bottom-color: #444;
+        }
+
+        .cart-item-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            background-color: #eee;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            font-size: 0.95em;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-price {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 5px;
+            flex-direction: column;
+        }
+
+        .btn-remove {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-remove:hover {
+            background: #ff3838;
+        }
+
+        /* New Buy Button Style */
+        .btn-buy-item {
+            background: #2ed573;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-buy-item:hover {
+            background: #26af61;
+            transform: scale(1.05);
+        }
+
+        .cart-total {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+        
+        body.dark-mode .cart-total {
+            border-top-color: #444;
+        }
+
+        .empty-cart-msg {
+            text-align: center;
+            color: #999;
+            padding: 20px 0;
+        }
+
+        /* --- Delivery Queue Section --- */
+        .delivery-section {
+            margin-top: 25px;
+            border-top: 3px solid #f0f0f0;
+            padding-top: 15px;
+        }
+
+        body.dark-mode .delivery-section {
+            border-top-color: #444;
+        }
+
+        .delivery-header {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        body.dark-mode .delivery-header { color: #fff; }
+
+        .queue-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .queue-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.7;
+        }
+        
+        body.dark-mode .queue-item {
+            background: #333;
+            color: #ccc;
+        }
+
+        .queue-item.active-delivery {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            opacity: 1;
+        }
+        
+        body.dark-mode .queue-item.active-delivery {
+            background: #152e4d;
+            border-color: #2196f3;
+            color: white;
+        }
+
+        .queue-status {
+            font-size: 0.8em;
+            font-weight: 700;
+            margin-left: auto;
+            color: #666;
+        }
+
+        .active-delivery .queue-status {
+            color: #2196f3;
+        }
+
+        .timer-badge {
+            background: #ff4757;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-family: monospace;
+        }
+
+        /* --- Account Info Styles --- */
         .account-info-item {
             display: flex;
             justify-content: space-between;
@@ -250,15 +430,9 @@
             border-bottom: 1px solid #f5f5f5;
         }
 
-        .info-label {
-            font-weight: 600;
-            color: #666;
-        }
-
-        .info-value {
-            color: #667eea;
-            font-weight: 600;
-        }
+        .info-label { font-weight: 600; color: #666; }
+        .info-value { color: #667eea; font-weight: 600; }
+        body.dark-mode .info-label { color: #ccc; }
 
         .logout-btn {
             width: 100%;
@@ -276,115 +450,38 @@
         .logout-btn:hover {
             background: #ff3838;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
         }
 
-        .menu-dropdown {
-            position: absolute;
-            top: 60px;
-            right: 40px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            padding: 25px;
-            min-width: 350px;
-            z-index: 100;
-            display: none;
-            animation: dropDown 0.3s ease;
-        }
-
-        .menu-dropdown.show {
-            display: block;
-        }
-
-        body.dark-mode .menu-dropdown,
-        body.dark-mode .account-dropdown {
-            background: #2a2a2a;
-        }
-
-        body.dark-mode .dropdown-header {
-            color: #fff;
-            border-bottom-color: #444;
-        }
-
-        body.dark-mode .theme-option {
-            background: #1f1f1f;
-            color: #fff;
-        }
-
-        body.dark-mode .theme-option:hover {
-            background: #333;
-        }
-
-        body.dark-mode .theme-option.active {
-            background: #667eea;
-        }
-
-        .settings-section {
-            margin-bottom: 25px;
-        }
-
+        /* --- Theme Options --- */
+        .settings-section { margin-bottom: 25px; }
         .section-title {
             font-size: 1em;
             font-weight: 600;
             color: #666;
             margin-bottom: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
-
         .theme-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
         }
-
         .theme-option {
             padding: 12px 16px;
             border-radius: 10px;
             background: #f5f5f5;
             cursor: pointer;
-            transition: all 0.3s ease;
             text-align: center;
             font-weight: 600;
             border: 2px solid transparent;
         }
-
-        .theme-option:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
         .theme-option.active {
             background: #667eea;
             color: white;
             border-color: #667eea;
         }
-
-        .theme-option.default {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .theme-option.dark {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-        }
-
-        .theme-option.ocean {
-            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
-            color: white;
-        }
-
-        .theme-option.sunset {
-            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
-            color: white;
-        }
-
-        .theme-option.forest {
-            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
-            color: white;
-        }
+        body.dark-mode .theme-option { background: #1f1f1f; color: #fff; }
+        body.dark-mode .theme-option.active { background: #667eea; }
 
         .reset-btn {
             width: 100%;
@@ -395,16 +492,10 @@
             border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s ease;
             margin-top: 15px;
         }
 
-        .reset-btn:hover {
-            background: #ff8800;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 165, 2, 0.3);
-        }
-
+        /* --- Header & Nav --- */
         .header {
             background: white;
             padding: 20px 40px;
@@ -440,11 +531,6 @@
             border: 2px solid #e0e0e0;
             border-radius: 25px;
             font-size: 1em;
-            transition: all 0.3s ease;
-        }
-
-        .search-bar input::placeholder {
-            color: #999;
         }
 
         .search-bar input:focus {
@@ -462,15 +548,33 @@
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
+            position: relative;
         }
 
-        .nav-btn:hover {
+        .nav-btn:hover, .nav-btn.active {
             background: #667eea;
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+
+        /* --- Product Grid --- */
         .container {
             display: flex;
             padding: 40px;
@@ -494,9 +598,10 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
         }
-
-        .product-card.hidden {
-            display: none;
+        .product-card.hidden { display: none; }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
         }
 
         .no-results {
@@ -507,15 +612,7 @@
             font-size: 1.2em;
             display: none;
         }
-
-        .no-results.show {
-            display: block;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
+        .no-results.show { display: block; }
 
         .product-image {
             width: 100%;
@@ -528,54 +625,20 @@
             color: #666;
             position: relative;
             overflow: hidden;
-            background-size: cover;
-            background-position: center;
         }
-
+        
         .product-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .product-image::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent,
-                rgba(255,255,255,0.3),
-                transparent
-            );
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-        }
-
-        .product-card:hover .product-image::before {
-            left: 100%;
-        }
-
-        .product-info {
-            padding: 20px;
-        }
-
+        .product-info { padding: 20px; }
         .product-name {
             font-size: 1.2em;
             font-weight: 600;
             color: #333;
             margin-bottom: 15px;
-        }
-
-        .product-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
         }
 
         .product-price {
@@ -592,16 +655,11 @@
             margin-bottom: 15px;
         }
 
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
         .action-buttons {
             display: flex;
             gap: 10px;
             width: 100%;
+            margin-top: 15px;
         }
 
         .btn {
@@ -618,7 +676,6 @@
             background: #f0f0f0;
             color: #667eea;
         }
-
         .btn-like:hover {
             background: #667eea;
             color: white;
@@ -629,7 +686,6 @@
             background: #667eea;
             color: white;
         }
-
         .btn-cart:hover {
             background: #764ba2;
             transform: scale(1.05);
@@ -652,32 +708,17 @@
             color: #333;
             margin-bottom: 20px;
         }
-
-        .detail-content {
-            color: #666;
-            line-height: 1.8;
-        }
-
+        .detail-content { color: #666; line-height: 1.8; }
         .detail-specs {
             margin-top: 20px;
             padding-top: 20px;
             border-top: 2px solid #f0f0f0;
         }
-
         .spec-item {
             display: flex;
             justify-content: space-between;
             padding: 10px 0;
             border-bottom: 1px solid #f5f5f5;
-        }
-
-        .spec-label {
-            font-weight: 600;
-            color: #333;
-        }
-
-        .spec-value {
-            color: #667eea;
         }
 
         .divider {
@@ -687,38 +728,21 @@
         }
 
         @media (max-width: 1024px) {
-            .container {
-                flex-direction: column;
-            }
-
-            .product-detail {
-                width: 100%;
-                position: relative;
-                top: 0;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            }
+            .container { flex-direction: column; }
+            .product-detail { width: 100%; position: relative; top: 0; }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+            .cart-dropdown { right: 20px; left: 20px; width: auto; }
         }
 
         @media (max-width: 768px) {
-            .nav-bar {
-                flex-wrap: wrap;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-
-            .container {
-                padding: 20px;
-            }
+            .nav-bar { flex-wrap: wrap; }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+            .container { padding: 20px; }
+            .account-dropdown, .menu-dropdown { right: 20px; left: 20px; min-width: auto; }
         }
     </style>
 </head>
 <body>
-    <!-- Login Overlay -->
     <div class="login-overlay" id="loginOverlay">
         <div class="login-modal">
             <h2 class="login-title">Welcome to Shopyflix</h2>
@@ -736,7 +760,6 @@
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content" id="mainContent">
         <div class="header">
         <h1 class="title">ShopHub</h1>
@@ -744,12 +767,34 @@
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="Search for products...">
             </div>
-            <button class="nav-btn">Add-to-cart and Orders</button>
+            
+            <button class="nav-btn" id="cartBtn">
+                Add-to-cart and Orders
+                <span class="cart-badge" id="cartCount">0</span>
+            </button>
+            
             <button class="nav-btn" id="accountBtn">Account</button>
             <button class="nav-btn" id="menuBtn">Menu</button>
         </div>
 
-        <!-- Account Dropdown -->
+        <div class="cart-dropdown" id="cartDropdown">
+            <div class="dropdown-header">Your Cart</div>
+            <div class="cart-items-container" id="cartItems">
+                <div class="empty-cart-msg">Your cart is empty</div>
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₱0.00</span>
+            </div>
+            
+            <div class="delivery-section">
+                <div class="delivery-header">🚚 Delivery Queue</div>
+                <div class="queue-list" id="queueList">
+                    <div style="text-align:center; color:#999; font-size:0.9em;">No active orders</div>
+                </div>
+            </div>
+        </div>
+
         <div class="account-dropdown" id="accountDropdown">
             <div class="dropdown-header">Account Information</div>
             <div class="account-info-item">
@@ -763,28 +808,17 @@
             <button class="logout-btn" id="logoutBtn">Logout</button>
         </div>
 
-        <!-- Menu Dropdown -->
         <div class="menu-dropdown" id="menuDropdown">
             <div class="dropdown-header">Settings</div>
             
             <div class="settings-section">
                 <div class="section-title">Theme</div>
                 <div class="theme-grid">
-                    <div class="theme-option default active" data-theme="default">
-                        Default
-                    </div>
-                    <div class="theme-option dark" data-theme="dark">
-                        Dark Mode
-                    </div>
-                    <div class="theme-option ocean" data-theme="ocean">
-                        Ocean
-                    </div>
-                    <div class="theme-option sunset" data-theme="sunset">
-                        Sunset
-                    </div>
-                    <div class="theme-option forest" data-theme="forest">
-                        Forest
-                    </div>
+                    <div class="theme-option default active" data-theme="default">Default</div>
+                    <div class="theme-option dark" data-theme="dark">Dark Mode</div>
+                    <div class="theme-option ocean" data-theme="ocean">Ocean</div>
+                    <div class="theme-option sunset" data-theme="sunset">Sunset</div>
+                    <div class="theme-option forest" data-theme="forest">Forest</div>
                 </div>
             </div>
 
@@ -798,7 +832,7 @@
                 🔍 No products found. Try a different search term!
             </div>
 
-            <div class="product-card" data-name="Premium Wireless Headphones">
+            <div class="product-card" data-name="Premium Wireless Headphones" data-price="129.99">
                 <div class="product-image" data-product="1">
                     <img src="" alt="Premium Wireless Headphones">
                 </div>
@@ -819,7 +853,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-name="Smart Watch Pro">
+            <div class="product-card" data-name="Smart Watch Pro" data-price="299.99">
                 <div class="product-image" data-product="2">
                     <img src="" alt="Smart Watch Pro">
                 </div>
@@ -840,7 +874,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-name="Portable Speaker">
+            <div class="product-card" data-name="Portable Speaker" data-price="79.99">
                 <div class="product-image" data-product="3">
                     <img src="" alt="Portable Speaker">
                 </div>
@@ -861,7 +895,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-name="Mechanical Keyboard">
+            <div class="product-card" data-name="Mechanical Keyboard" data-price="149.99">
                 <div class="product-image" data-product="4">
                     <img src="" alt="Mechanical Keyboard">
                 </div>
@@ -881,6 +915,133 @@
                     </div>
                 </div>
             </div>
+
+            <div class="product-card" data-name="RGB Gaming Mouse" data-price="59.99">
+                <div class="product-image" data-product="5">
+                    <img src="" alt="RGB Gaming Mouse">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">RGB Gaming Mouse</div>
+                    <div class="product-stats">
+                        <span class="stat-item">⭐ 4.8</span>
+                        <span class="stat-item">👍 312</span>
+                        <span class="stat-item">🔥 280 sold</span>
+                    </div>
+                    <div class="product-actions">
+                        <div class="product-price">₱59.99</div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-like">❤ Like</button>
+                        <button class="btn btn-cart">🛒 Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-name="Ultra HD 4K Monitor" data-price="349.99">
+                <div class="product-image" data-product="6">
+                    <img src="" alt="Ultra HD 4K Monitor">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Ultra HD 4K Monitor</div>
+                    <div class="product-stats">
+                        <span class="stat-item">⭐ 4.9</span>
+                        <span class="stat-item">👍 150</span>
+                        <span class="stat-item">🔥 98 sold</span>
+                    </div>
+                    <div class="product-actions">
+                        <div class="product-price">₱349.99</div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-like">❤ Like</button>
+                        <button class="btn btn-cart">🛒 Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-name="Ergonomic Laptop Stand" data-price="29.99">
+                <div class="product-image" data-product="7">
+                    <img src="" alt="Ergonomic Laptop Stand">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Ergonomic Laptop Stand</div>
+                    <div class="product-stats">
+                        <span class="stat-item">⭐ 4.6</span>
+                        <span class="stat-item">👍 405</span>
+                        <span class="stat-item">🔥 600 sold</span>
+                    </div>
+                    <div class="product-actions">
+                        <div class="product-price">₱29.99</div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-like">❤ Like</button>
+                        <button class="btn btn-cart">🛒 Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-name="VR Headset System" data-price="399.99">
+                <div class="product-image" data-product="8">
+                    <img src="" alt="VR Headset System">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">VR Headset System</div>
+                    <div class="product-stats">
+                        <span class="stat-item">⭐ 4.8</span>
+                        <span class="stat-item">👍 180</span>
+                        <span class="stat-item">🔥 120 sold</span>
+                    </div>
+                    <div class="product-actions">
+                        <div class="product-price">₱399.99</div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-like">❤ Like</button>
+                        <button class="btn btn-cart">🛒 Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-name="Multi-Port USB-C Hub" data-price="49.99">
+                <div class="product-image" data-product="9">
+                    <img src="" alt="Multi-Port USB-C Hub">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Multi-Port USB-C Hub</div>
+                    <div class="product-stats">
+                        <span class="stat-item">⭐ 4.7</span>
+                        <span class="stat-item">👍 290</span>
+                        <span class="stat-item">🔥 410 sold</span>
+                    </div>
+                    <div class="product-actions">
+                        <div class="product-price">₱49.99</div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-like">❤ Like</button>
+                        <button class="btn btn-cart">🛒 Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-name="Professional Drone" data-price="599.99">
+                <div class="product-image" data-product="10">
+                    <img src="" alt="Professional Drone">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Professional Drone</div>
+                    <div class="product-stats">
+                        <span class="stat-item">⭐ 4.9</span>
+                        <span class="stat-item">👍 89</span>
+                        <span class="stat-item">🔥 45 sold</span>
+                    </div>
+                    <div class="product-actions">
+                        <div class="product-price">₱599.99</div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-like">❤ Like</button>
+                        <button class="btn btn-cart">🛒 Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div class="divider"></div>
@@ -918,6 +1079,13 @@
             email: ''
         };
 
+        let cart = [];
+        // FIFO Queue for delivery
+        let deliveryQueue = [];
+        let isDelivering = false;
+        let deliveryTimer = null;
+        let currentTimerValue = 0;
+
         let currentTheme = 'default';
 
         window.addEventListener('DOMContentLoaded', function() {
@@ -927,6 +1095,7 @@
             }
         });
 
+        // --- Login Logic ---
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -934,7 +1103,6 @@
             userData.email = document.getElementById('email').value;
             
             document.getElementById('loginOverlay').classList.add('hidden');
-            
             document.getElementById('mainContent').classList.add('visible');
             
             updateAccountButton();
@@ -948,46 +1116,221 @@
             document.getElementById('displayEmail').textContent = userData.email;
         }
 
+        // --- Dropdown Logic ---
+        function toggleDropdown(id, triggerBtn) {
+            const dropdown = document.getElementById(id);
+            const allDropdowns = document.querySelectorAll('.account-dropdown, .menu-dropdown, .cart-dropdown');
+            
+            // Close others
+            allDropdowns.forEach(d => {
+                if(d.id !== id) d.classList.remove('show');
+            });
+            
+            // Toggle current
+            dropdown.classList.toggle('show');
+            
+            // Visual feedback for nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            if(dropdown.classList.contains('show')) {
+                triggerBtn.classList.add('active');
+            }
+        }
+
         document.getElementById('accountBtn').addEventListener('click', function(e) {
             e.stopPropagation();
-            const dropdown = document.getElementById('accountDropdown');
-            dropdown.classList.toggle('show');
-        });
-
-        document.addEventListener('click', function(e) {
-            const dropdown = document.getElementById('accountDropdown');
-            const accountBtn = document.getElementById('accountBtn');
-            const menuDropdown = document.getElementById('menuDropdown');
-            const menuBtn = document.getElementById('menuBtn');
-            
-            if (!dropdown.contains(e.target) && e.target !== accountBtn) {
-                dropdown.classList.remove('show');
-            }
-            
-            if (!menuDropdown.contains(e.target) && e.target !== menuBtn) {
-                menuDropdown.classList.remove('show');
-            }
+            toggleDropdown('accountDropdown', this);
         });
 
         document.getElementById('menuBtn').addEventListener('click', function(e) {
             e.stopPropagation();
-            const menuDropdown = document.getElementById('menuDropdown');
-            menuDropdown.classList.toggle('show');
-            document.getElementById('accountDropdown').classList.remove('show');
+            toggleDropdown('menuDropdown', this);
         });
 
+        document.getElementById('cartBtn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleDropdown('cartDropdown', this);
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.account-dropdown') && 
+                !e.target.closest('.menu-dropdown') && 
+                !e.target.closest('.cart-dropdown') && 
+                !e.target.classList.contains('nav-btn')) {
+                
+                document.querySelectorAll('.account-dropdown, .menu-dropdown, .cart-dropdown').forEach(d => {
+                    d.classList.remove('show');
+                });
+                document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            }
+        });
+
+        // --- Cart Logic ---
+        document.querySelectorAll('.btn-cart').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                const card = this.closest('.product-card');
+                const name = card.getAttribute('data-name');
+                const price = parseFloat(card.getAttribute('data-price'));
+                const imgSrc = card.querySelector('img').src;
+
+                addToCart(name, price, imgSrc);
+                
+                const originalText = this.innerText;
+                this.innerText = "Added! ✓";
+                setTimeout(() => {
+                    this.innerText = originalText;
+                }, 1000);
+            });
+        });
+
+        function addToCart(name, price, imgSrc) {
+            cart.push({ name, price, imgSrc });
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartContainer = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            cartCount.textContent = cart.length;
+            cartContainer.innerHTML = '';
+
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<div class="empty-cart-msg">Your cart is empty</div>';
+            } else {
+                cart.forEach((item, index) => {
+                    total += item.price;
+                    
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'cart-item';
+                    itemDiv.innerHTML = `
+                        <img src="${item.imgSrc}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">₱${item.price.toFixed(2)}</div>
+                        </div>
+                        <div class="cart-actions">
+                            <button class="btn-buy-item" onclick="buyItem(${index})">Buy</button>
+                            <button class="btn-remove" onclick="removeFromCart(${index})">Remove</button>
+                        </div>
+                    `;
+                    cartContainer.appendChild(itemDiv);
+                });
+            }
+
+            cartTotal.textContent = '₱' + total.toFixed(2);
+        }
+
+        // Delivery Queue Logic
+        function buyItem(index) {
+            // Remove from cart
+            const item = cart[index];
+            cart.splice(index, 1);
+            
+            // Add to delivery queue
+            deliveryQueue.push(item);
+            
+            // Update UI
+            updateCartUI();
+            processQueue();
+        }
+
+        function processQueue() {
+            updateQueueUI();
+            
+            // If already delivering or queue is empty, do nothing
+            if (isDelivering || deliveryQueue.length === 0) return;
+            
+            isDelivering = true;
+            
+            // Start 5 minute timer (300 seconds)
+            startDeliveryTimer(300);
+        }
+
+        function startDeliveryTimer(duration) {
+            currentTimerValue = duration;
+            updateQueueUI();
+            
+            deliveryTimer = setInterval(function() {
+                currentTimerValue--;
+                updateQueueUI();
+                
+                if (currentTimerValue <= 0) {
+                    clearInterval(deliveryTimer);
+                    completeDelivery();
+                }
+            }, 1000); // Update every second
+        }
+
+        function completeDelivery() {
+            // Remove first item (FIFO)
+            const deliveredItem = deliveryQueue.shift();
+            isDelivering = false;
+            
+            alert(`${deliveredItem.name} has been delivered!`);
+            
+            // Process next item if exists
+            processQueue();
+        }
+
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60);
+            const s = seconds % 60;
+            return `${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+
+        function updateQueueUI() {
+            const queueContainer = document.getElementById('queueList');
+            queueContainer.innerHTML = '';
+            
+            if (deliveryQueue.length === 0) {
+                queueContainer.innerHTML = '<div style="text-align:center; color:#999; font-size:0.9em;">No active orders</div>';
+                return;
+            }
+
+            deliveryQueue.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                const isFirst = index === 0;
+                
+                itemDiv.className = `queue-item ${isFirst ? 'active-delivery' : ''}`;
+                
+                let statusHtml = '';
+                if (isFirst) {
+                    statusHtml = `
+                        <div class="queue-status">
+                            On the way <span class="timer-badge">${formatTime(currentTimerValue)}</span>
+                        </div>
+                    `;
+                } else {
+                    statusHtml = `<div class="queue-status">Waiting in queue...</div>`;
+                }
+
+                itemDiv.innerHTML = `
+                    <img src="${item.imgSrc}" alt="${item.name}" class="cart-item-img" style="width:40px;height:40px;">
+                    <div style="font-size:0.9em; font-weight:600;">${item.name}</div>
+                    ${statusHtml}
+                `;
+                queueContainer.appendChild(itemDiv);
+            });
+        }
+
+        // --- Theme Logic ---
         function applyTheme(theme) {
             document.body.classList.remove('dark-mode', 'ocean-theme', 'sunset-theme', 'forest-theme');
             
-            if (theme === 'dark') {
-                document.body.classList.add('dark-mode');
-            } else if (theme === 'ocean') {
-                document.body.classList.add('ocean-theme');
-            } else if (theme === 'sunset') {
-                document.body.classList.add('sunset-theme');
-            } else if (theme === 'forest') {
-                document.body.classList.add('forest-theme');
-            }
+            if (theme === 'dark') document.body.classList.add('dark-mode');
+            else if (theme === 'ocean') document.body.classList.add('ocean-theme');
+            else if (theme === 'sunset') document.body.classList.add('sunset-theme');
+            else if (theme === 'forest') document.body.classList.add('forest-theme');
             
             document.querySelectorAll('.theme-option').forEach(option => {
                 option.classList.remove('active');
@@ -1011,25 +1354,29 @@
             applyTheme('default');
         });
 
+        // --- Logout Logic ---
         document.getElementById('logoutBtn').addEventListener('click', function() {
             userData.username = '';
             userData.email = '';
+            cart = []; 
+            deliveryQueue = [];
+            clearInterval(deliveryTimer);
+            isDelivering = false;
+            
+            updateCartUI();
+            updateQueueUI();
             
             document.getElementById('accountBtn').innerHTML = 'Account';
-            
-            document.getElementById('accountDropdown').classList.remove('show');
-            
+            document.querySelectorAll('.account-dropdown, .menu-dropdown, .cart-dropdown').forEach(d => d.classList.remove('show'));
             document.getElementById('mainContent').classList.remove('visible');
-            
             document.getElementById('loginOverlay').classList.remove('hidden');
-            
             document.getElementById('searchInput').value = '';
             productCards.forEach(card => card.classList.remove('hidden'));
             noResults.classList.remove('show');
-            
             document.getElementById('loginForm').reset();
         });
 
+        // --- Search Logic ---
         const searchInput = document.getElementById('searchInput');
         const productCards = document.querySelectorAll('.product-card');
         const noResults = document.getElementById('noResults');
