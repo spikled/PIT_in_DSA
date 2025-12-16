@@ -1185,7 +1185,7 @@
         });
 
         function addToCart(name, price, imgSrc) {
-            cart.push({ name, price, imgSrc });
+            cart.unshift({ name, price, imgSrc });
             updateCartUI();
         }
 
